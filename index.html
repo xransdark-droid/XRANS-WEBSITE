@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security - Xrans Exploit</title>
+    <title>Cyber Security - Real Testing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -17,6 +17,7 @@
             --primary: #ffffff;
             --secondary: #000000;
             --accent: #00ff9d;
+            --accent-red: #ff3a3a;
             --gray-light: #f5f5f5;
             --gray-dark: #222222;
             --radius: 12px;
@@ -122,19 +123,9 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .about ul {
-            margin-left: 1.5rem;
-            margin-top: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .about li {
-            margin-bottom: 0.5rem;
-        }
-
         /* Testing Section */
         .testing-section {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .testing-section h3 {
@@ -190,7 +181,8 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .input-group input {
+        .input-group input, 
+        .input-group select {
             width: 100%;
             padding: 12px 15px;
             background-color: rgba(0, 0, 0, 0.3);
@@ -201,7 +193,8 @@
             transition: var(--transition);
         }
 
-        .input-group input:focus {
+        .input-group input:focus,
+        .input-group select:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.1);
@@ -239,6 +232,43 @@
             background-color: rgba(0, 255, 157, 0.1);
         }
 
+        .btn-danger {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #00ccff);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* Results Section */
         .results-section {
             margin-bottom: 4rem;
@@ -259,6 +289,8 @@
             padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.05);
             min-height: 300px;
+            max-height: 600px;
+            overflow-y: auto;
         }
 
         .result-item {
@@ -275,11 +307,13 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
+            align-items: center;
         }
 
         .result-title {
             font-weight: 600;
             color: var(--accent);
+            font-size: 1.1rem;
         }
 
         .result-status {
@@ -299,61 +333,47 @@
             color: #ff3232;
         }
 
+        .status-warning {
+            background-color: rgba(255, 200, 50, 0.2);
+            color: #ffc832;
+        }
+
+        .status-info {
+            background-color: rgba(0, 150, 255, 0.2);
+            color: #0096ff;
+        }
+
         .result-details {
             color: rgba(255, 255, 255, 0.7);
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             white-space: pre-wrap;
             word-break: break-all;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
         }
 
-        /* Captcha Demo */
-        .captcha-demo {
-            background-color: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius);
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 4rem;
-            text-align: center;
+        .result-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin: 5px 0;
         }
 
-        .captcha-demo h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .captcha-box {
+        /* Captcha Display */
+        .captcha-display {
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            padding: 2rem;
-            max-width: 400px;
-            margin: 0 auto;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-
-        .captcha-text {
-            font-size: 2rem;
-            letter-spacing: 10px;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-            font-weight: 700;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .captcha-input {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            margin: 1rem 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            letter-spacing: 5px;
+        }
+
+        .captcha-display img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin-bottom: 10px;
         }
 
         /* Footer */
@@ -393,6 +413,21 @@
             background: var(--accent);
             border-radius: 4px;
         }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -404,7 +439,7 @@
                     <i class="fas fa-shield-alt"></i>
                     <div class="logo-text">
                         <h1>Cyber Security</h1>
-                        <p>Testing & Research Platform</p>
+                        <p>Real Captcha Bypass Testing</p>
                     </div>
                 </div>
                 <div class="developer-tag">
@@ -418,109 +453,110 @@
     <main class="container">
         <!-- Hero Section -->
         <section class="hero fade-in">
-            <h2>Testing Keamanan Website</h2>
-            <p>Platform untuk menguji kerentanan sistem keamanan website, terutama dalam mendeteksi dan melewati proteksi Captcha dan sistem keamanan lainnya.</p>
+            <h2>Real Captcha Bypass Testing</h2>
+            <p>Platform testing real untuk menganalisis dan melewati sistem captcha dengan teknik request manusiawi</p>
         </section>
 
         <!-- About Section -->
         <section class="about fade-in">
             <h3><i class="fas fa-info-circle"></i> Tentang Website Ini</h3>
-            <p>Website "Cyber Security" dikembangkan oleh <span class="developer">Xrans Exploit</span> sebagai platform testing dan penelitian keamanan siber. Tujuan utama platform ini adalah untuk membantu developer dan security researcher dalam menguji ketahanan website terhadap berbagai metode serangan dan bypass keamanan.</p>
+            <p>Website "Cyber Security" dikembangkan oleh <span class="developer">Xrans Exploit</span> untuk melakukan testing REAL terhadap sistem keamanan website. Berbeda dengan tool simulasi, website ini melakukan request HTTP sesungguhnya dengan header manusiawi dan menganalisis response yang diterima.</p>
             
-            <p><strong>Tujuan khusus website ini:</strong></p>
+            <p><strong>Fitur Utama:</strong></p>
             <ul>
-                <li>Menguji kemampuan sistem dalam mendeteksi dan melewati proteksi Captcha</li>
-                <li>Menganalisis respons website terhadap request yang mencurigakan</li>
-                <li>Melakukan simulasi serangan bot untuk menguji ketahanan sistem</li>
-                <li>Memberikan laporan detail tentang kerentanan yang ditemukan</li>
-                <li>Membantu developer meningkatkan keamanan website mereka</li>
+                <li>Request HTTP real dengan header manusiawi</li>
+                <li>Analisis response code dan headers</li>
+                <li>Deteksi sistem captcha (hCaptcha, reCAPTCHA)</li>
+                <li>Testing bypass dengan teknik request natural</li>
+                <li>Monitoring rate limiting dan WAF blocking</li>
+                <li>Laporan detail status keamanan</li>
             </ul>
             
-            <p><strong>Disclaimer:</strong> Website ini hanya untuk tujuan edukasi dan testing yang legal. Selalu dapatkan izin sebelum menguji website yang bukan milik Anda.</p>
+            <p><strong>Disclaimer:</strong> Hanya gunakan untuk testing website milik sendiri atau dengan izin tertulis. Illegal testing dapat berakibat hukum.</p>
         </section>
 
         <!-- Testing Section -->
         <section class="testing-section fade-in">
-            <h3><i class="fas fa-flask"></i> Testing Keamanan</h3>
+            <h3><i class="fas fa-crosshairs"></i> Real Testing Configuration</h3>
             <div class="test-controls">
                 <div class="control-card">
-                    <h4><i class="fas fa-globe"></i> Target Website</h4>
+                    <h4><i class="fas fa-bullseye"></i> Target Testing</h4>
                     <div class="input-group">
-                        <label for="target-url">URL Target</label>
+                        <label for="target-url">Website URL</label>
                         <input type="text" id="target-url" placeholder="https://example.com" value="https://nowsecure.nl">
                     </div>
                     <div class="input-group">
-                        <label for="test-type">Jenis Testing</label>
+                        <label for="test-type">Test Method</label>
                         <select id="test-type" class="input-group input">
-                            <option value="captcha">Bypass Captcha</option>
-                            <option value="security-headers">Security Headers</option>
-                            <option value="bot-detection">Bot Detection</option>
-                            <option value="cloudflare">Cloudflare Protection</option>
+                            <option value="captcha-detection">Captcha Detection</option>
+                            <option value="bypass-attempt">Bypass Attempt</option>
+                            <option value="full-analysis">Full Security Analysis</option>
+                            <option value="header-test">Header Analysis</option>
                         </select>
                     </div>
-                    <button class="btn" id="start-test">
-                        <i class="fas fa-play"></i> Mulai Testing
+                    <button class="btn" id="start-real-test">
+                        <i class="fas fa-play"></i> Start Real Test
                     </button>
                 </div>
 
                 <div class="control-card">
-                    <h4><i class="fas fa-sliders-h"></i> Konfigurasi</h4>
+                    <h4><i class="fas fa-cogs"></i> Request Settings</h4>
                     <div class="input-group">
-                        <label for="request-delay">Delay Request (ms)</label>
-                        <input type="number" id="request-delay" value="1000" min="100" max="10000">
+                        <label for="request-method">HTTP Method</label>
+                        <select id="request-method">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="HEAD">HEAD</option>
+                        </select>
                     </div>
                     <div class="input-group">
-                        <label for="request-count">Jumlah Request</label>
-                        <input type="number" id="request-count" value="3" min="1" max="10">
+                        <label for="request-timeout">Timeout (seconds)</label>
+                        <input type="number" id="request-timeout" value="10" min="1" max="30">
                     </div>
                     <div class="input-group">
                         <label>
-                            <input type="checkbox" id="use-proxy" checked> Gunakan Proxy Rotasi
+                            <input type="checkbox" id="follow-redirects" checked> Follow Redirects
                         </label>
                     </div>
-                    <button class="btn btn-secondary" id="advanced-settings">
-                        <i class="fas fa-cog"></i> Pengaturan Lanjutan
+                    <button class="btn btn-secondary" id="load-test-sites">
+                        <i class="fas fa-download"></i> Load Test Sites
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Captcha Demo Section -->
-        <section class="captcha-demo fade-in">
-            <h4><i class="fas fa-robot"></i> Simulasi Bypass Captcha</h4>
-            <p>Simulasi proses bypass captcha seperti pada nowsecure.nl</p>
-            <div class="captcha-box">
-                <div class="captcha-text" id="captchaDisplay">A3B8C</div>
-                <input type="text" class="captcha-input" id="captchaInput" placeholder="Masukkan kode di atas" maxlength="5">
-                <button class="btn" id="verifyCaptcha">
-                    <i class="fas fa-check"></i> Verifikasi Captcha
-                </button>
-                <button class="btn btn-secondary" id="autoSolve" style="margin-top: 10px;">
-                    <i class="fas fa-magic"></i> Auto Solve
-                </button>
+        <!-- Progress Section -->
+        <section class="progress-container fade-in" id="progressSection" style="display: none;">
+            <h3><i class="fas fa-tasks"></i> Test Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p id="captchaResult" style="margin-top: 1rem;"></p>
+            <div class="progress-text">
+                <span id="progressStatus">Preparing test...</span>
+                <span id="progressPercent">0%</span>
+            </div>
         </section>
 
         <!-- Results Section -->
         <section class="results-section fade-in">
-            <h3><i class="fas fa-chart-bar"></i> Hasil Testing</h3>
+            <h3><i class="fas fa-chart-bar"></i> Real Test Results</h3>
             <div class="results-container" id="resultsContainer">
                 <div class="result-item">
                     <div class="result-header">
-                        <div class="result-title">Status Sistem</div>
-                        <div class="result-status status-success">Siap</div>
+                        <div class="result-title">System Ready</div>
+                        <div class="result-status status-success">Ready</div>
                     </div>
-                    <div class="result-details">Sistem siap melakukan testing keamanan. Masukkan URL target dan klik "Mulai Testing".</div>
+                    <div class="result-details">System initialized. Enter target URL and click "Start Real Test" to begin.</div>
                 </div>
-                
-                <div class="result-item">
-                    <div class="result-header">
-                        <div class="result-title">Info Testing</div>
-                        <div class="result-status status-success">Menunggu</div>
-                    </div>
-                    <div class="result-details">Hasil testing akan ditampilkan di sini setelah proses selesai.</div>
-                </div>
+            </div>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-danger" id="clear-results">
+                    <i class="fas fa-trash"></i> Clear Results
+                </button>
+                <button class="btn btn-secondary" id="export-results" style="margin-left: 10px;">
+                    <i class="fas fa-download"></i> Export Results
+                </button>
             </div>
         </section>
     </main>
@@ -528,258 +564,544 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Cyber Security Testing Platform. Dikembangkan oleh <span class="developer">Xrans Exploit</span>.</p>
-            <p>Hanya untuk tujuan edukasi dan testing yang legal.</p>
-            <p><i class="fas fa-exclamation-triangle"></i> Selalu dapatkan izin sebelum menguji website pihak lain.</p>
+            <p>&copy; 2023 Cyber Security Real Testing. Developed by <span class="developer">Xrans Exploit</span>.</p>
+            <p>For educational and authorized testing purposes only.</p>
+            <p><i class="fas fa-exclamation-triangle"></i> Always obtain permission before testing third-party websites.</p>
         </div>
     </footer>
 
     <script>
-        // Generate random captcha
-        function generateCaptcha() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
-            let captcha = '';
-            for (let i = 0; i < 5; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        class RealSecurityTester {
+            constructor() {
+                this.results = [];
+                this.isTesting = false;
+                this.currentProgress = 0;
+                this.testSites = [
+                    { name: "NowSecure", url: "https://nowsecure.nl", description: "Bot detection testing" },
+                    { name: "Cloudflare Test", url: "https://www.cloudflare.com", description: "WAF protection" },
+                    { name: "reCAPTCHA Demo", url: "https://www.google.com/recaptcha/api2/demo", description: "Google reCAPTCHA" },
+                    { name: "hCaptcha Test", url: "https://accounts.hcaptcha.com/demo", description: "hCaptcha protection" },
+                    { name: "Sucuri Test", url: "https://www.sucuri.net", description: "Website firewall" }
+                ];
             }
-            document.getElementById('captchaDisplay').textContent = captcha;
-            return captcha;
-        }
 
-        // Current captcha
-        let currentCaptcha = generateCaptcha();
-        let testResults = [];
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Captcha verification
-            document.getElementById('verifyCaptcha').addEventListener('click', function() {
-                const userInput = document.getElementById('captchaInput').value.toUpperCase();
-                const resultElement = document.getElementById('captchaResult');
+            // Generate human-like headers
+            getHumanHeaders() {
+                const userAgents = [
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0',
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+                ];
                 
-                if (userInput === currentCaptcha) {
-                    resultElement.innerHTML = '<span style="color:#00ff9d"><i class="fas fa-check-circle"></i> Captcha berhasil diverifikasi!</span>';
-                    addTestResult('Captcha Manual', 'success', 'Berhasil melewati captcha manual');
-                } else {
-                    resultElement.innerHTML = '<span style="color:#ff3232"><i class="fas fa-times-circle"></i> Captcha salah! Coba lagi.</span>';
-                    addTestResult('Captcha Manual', 'failed', `Gagal: Input "${userInput}" tidak sesuai dengan "${currentCaptcha}"`);
-                }
-            });
+                const acceptLanguages = [
+                    'en-US,en;q=0.9',
+                    'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+                    'en-GB,en;q=0.9,en-US;q=0.8',
+                    'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7'
+                ];
 
-            // Auto solve captcha
-            document.getElementById('autoSolve').addEventListener('click', function() {
-                document.getElementById('captchaInput').value = currentCaptcha;
-                document.getElementById('captchaResult').innerHTML = '<span style="color:#00ff9d"><i class="fas fa-robot"></i> Captcha berhasil di-solve secara otomatis!</span>';
-                addTestResult('Auto Solve Captcha', 'success', 'Berhasil melewati captcha dengan auto-solving');
-            });
+                return {
+                    'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)],
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                    'Accept-Language': acceptLanguages[Math.floor(Math.random() * acceptLanguages.length)],
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Connection': 'keep-alive',
+                    'Upgrade-Insecure-Requests': '1',
+                    'Sec-Fetch-Dest': 'document',
+                    'Sec-Fetch-Mode': 'navigate',
+                    'Sec-Fetch-Site': 'none',
+                    'Sec-Fetch-User': '?1',
+                    'Cache-Control': 'max-age=0'
+                };
+            }
 
-            // Start security test
-            document.getElementById('start-test').addEventListener('click', function() {
-                const targetUrl = document.getElementById('target-url').value;
-                const testType = document.getElementById('test-type').value;
-                const requestDelay = document.getElementById('request-delay').value;
-                const requestCount = document.getElementById('request-count').value;
+            // Update progress
+            updateProgress(percent, status) {
+                this.currentProgress = percent;
+                document.getElementById('progressFill').style.width = `${percent}%`;
+                document.getElementById('progressPercent').textContent = `${percent}%`;
+                document.getElementById('progressStatus').textContent = status;
+            }
+
+            // Add result to display
+            addResult(title, status, details, subtitle = '') {
+                const resultsContainer = document.getElementById('resultsContainer');
+                const statusClass = `status-${status}`;
+                const statusText = status.charAt(0).toUpperCase() + status.slice(1);
                 
-                if (!targetUrl) {
-                    alert('Masukkan URL target terlebih dahulu!');
-                    return;
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item fade-in';
+                resultItem.innerHTML = `
+                    <div class="result-header">
+                        <div class="result-title">${title}</div>
+                        <div class="result-status ${statusClass}">${statusText}</div>
+                    </div>
+                    ${subtitle ? `<div class="result-subtitle">${subtitle}</div>` : ''}
+                    <div class="result-details">${details}</div>
+                `;
+                
+                resultsContainer.prepend(resultItem);
+                
+                // Save to results array
+                this.results.unshift({
+                    title,
+                    status,
+                    details,
+                    subtitle,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+            }
+
+            // Perform real HTTP request
+            async performRealRequest(url, method = 'GET') {
+                try {
+                    this.updateProgress(20, `Connecting to ${url}`);
+                    
+                    const headers = this.getHumanHeaders();
+                    const timeout = parseInt(document.getElementById('request-timeout').value) * 1000;
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), timeout);
+                    
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: headers,
+                        mode: 'cors',
+                        credentials: 'omit',
+                        referrerPolicy: 'no-referrer',
+                        signal: controller.signal
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    // Get response details
+                    const responseCode = response.status;
+                    const responseText = await response.text();
+                    const responseHeaders = {};
+                    
+                    response.headers.forEach((value, key) => {
+                        responseHeaders[key] = value;
+                    });
+                    
+                    this.updateProgress(60, `Analyzing response from ${url}`);
+                    
+                    return {
+                        success: true,
+                        url: url,
+                        status: responseCode,
+                        headers: responseHeaders,
+                        body: responseText,
+                        size: responseText.length
+                    };
+                    
+                } catch (error) {
+                    return {
+                        success: false,
+                        url: url,
+                        error: error.message,
+                        isTimeout: error.name === 'AbortError'
+                    };
+                }
+            }
+
+            // Analyze response for security features
+            analyzeResponse(responseData) {
+                const analysis = {
+                    hasCaptcha: false,
+                    captchaType: null,
+                    hasCloudflare: false,
+                    hasWAF: false,
+                    securityHeaders: {},
+                    redirects: false,
+                    isBlocked: false,
+                    responseTime: Date.now()
+                };
+
+                if (!responseData.success) {
+                    analysis.isBlocked = true;
+                    return analysis;
                 }
 
-                // Clear previous results
+                // Check response headers
+                const headers = responseData.headers;
+                
+                // Check for Cloudflare
+                if (headers['server'] && headers['server'].includes('cloudflare')) {
+                    analysis.hasCloudflare = true;
+                }
+                
+                if (headers['cf-ray']) {
+                    analysis.hasCloudflare = true;
+                }
+
+                // Check security headers
+                const securityHeaderNames = [
+                    'content-security-policy',
+                    'x-frame-options',
+                    'x-content-type-options',
+                    'strict-transport-security',
+                    'x-xss-protection',
+                    'referrer-policy'
+                ];
+
+                securityHeaderNames.forEach(header => {
+                    if (headers[header]) {
+                        analysis.securityHeaders[header] = headers[header];
+                    }
+                });
+
+                // Check for captcha in response body
+                const body = responseData.body.toLowerCase();
+                
+                if (body.includes('recaptcha') || body.includes('g-recaptcha')) {
+                    analysis.hasCaptcha = true;
+                    analysis.captchaType = 'reCAPTCHA';
+                }
+                
+                if (body.includes('hcaptcha')) {
+                    analysis.hasCaptcha = true;
+                    analysis.captchaType = 'hCaptcha';
+                }
+                
+                if (body.includes('captcha') && !analysis.captchaType) {
+                    analysis.hasCaptcha = true;
+                    analysis.captchaType = 'Generic Captcha';
+                }
+
+                // Check for WAF indicators
+                const wafIndicators = [
+                    'access denied',
+                    'forbidden',
+                    'blocked',
+                    'security violation',
+                    'waf',
+                    'firewall'
+                ];
+
+                wafIndicators.forEach(indicator => {
+                    if (body.includes(indicator)) {
+                        analysis.hasWAF = true;
+                    }
+                });
+
+                // Check for redirect
+                if (responseData.status >= 300 && responseData.status < 400) {
+                    analysis.redirects = true;
+                }
+
+                return analysis;
+            }
+
+            // Attempt bypass techniques
+            async attemptBypass(url, analysis) {
+                const bypassResults = [];
+                
+                if (analysis.hasCaptcha) {
+                    // Technique 1: Add referrer header
+                    this.updateProgress(70, 'Testing referrer bypass...');
+                    const referrerHeaders = this.getHumanHeaders();
+                    referrerHeaders['Referer'] = 'https://www.google.com/';
+                    
+                    try {
+                        const response = await fetch(url, {
+                            headers: referrerHeaders,
+                            mode: 'cors'
+                        });
+                        
+                        bypassResults.push({
+                            technique: 'Referrer Spoofing',
+                            success: response.ok,
+                            status: response.status
+                        });
+                    } catch (error) {
+                        bypassResults.push({
+                            technique: 'Referrer Spoofing',
+                            success: false,
+                            error: error.message
+                        });
+                    }
+
+                    // Technique 2: Delay between requests
+                    this.updateProgress(80, 'Testing delayed request...');
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    try {
+                        const response = await fetch(url, {
+                            headers: this.getHumanHeaders()
+                        });
+                        
+                        bypassResults.push({
+                            technique: 'Delayed Request (2s)',
+                            success: response.ok,
+                            status: response.status
+                        });
+                    } catch (error) {
+                        bypassResults.push({
+                            technique: 'Delayed Request (2s)',
+                            success: false,
+                            error: error.message
+                        });
+                    }
+
+                    // Technique 3: Different user agent
+                    this.updateProgress(85, 'Testing different user agents...');
+                    const mobileHeaders = this.getHumanHeaders();
+                    mobileHeaders['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1';
+                    
+                    try {
+                        const response = await fetch(url, {
+                            headers: mobileHeaders
+                        });
+                        
+                        bypassResults.push({
+                            technique: 'Mobile User Agent',
+                            success: response.ok,
+                            status: response.status
+                        });
+                    } catch (error) {
+                        bypassResults.push({
+                            technique: 'Mobile User Agent',
+                            success: false,
+                            error: error.message
+                        });
+                    }
+                }
+                
+                return bypassResults;
+            }
+
+            // Run complete test
+            async runTest(targetUrl, testType) {
+                if (this.isTesting) return;
+                
+                this.isTesting = true;
+                this.results = [];
+                document.getElementById('progressSection').style.display = 'block';
                 document.getElementById('resultsContainer').innerHTML = '';
                 
-                // Add initial status
-                addTestResult('Inisialisasi Testing', 'success', `Memulai testing ${testType} pada ${targetUrl}`);
+                this.addResult('Test Initialization', 'info', `Starting ${testType} test on ${targetUrl}`, new Date().toLocaleString());
                 
-                // Simulate testing process
-                simulateSecurityTest(targetUrl, testType, requestCount);
-            });
-
-            // Advanced settings button
-            document.getElementById('advanced-settings').addEventListener('click', function() {
-                alert('Fitur pengaturan lanjutan dalam pengembangan. Akan tersedia di versi berikutnya.');
-            });
-
-            // Generate new captcha every 30 seconds
-            setInterval(() => {
-                currentCaptcha = generateCaptcha();
-                document.getElementById('captchaInput').value = '';
-                document.getElementById('captchaResult').innerHTML = '<span style="color:#ffaa00"><i class="fas fa-sync-alt"></i> Captcha telah diperbarui</span>';
-            }, 30000);
-        });
-
-        // Add test result to display
-        function addTestResult(title, status, details) {
-            const resultsContainer = document.getElementById('resultsContainer');
-            const statusClass = status === 'success' ? 'status-success' : 'status-failed';
-            const statusText = status === 'success' ? 'Berhasil' : 'Gagal';
-            
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result-item';
-            resultItem.innerHTML = `
-                <div class="result-header">
-                    <div class="result-title">${title}</div>
-                    <div class="result-status ${statusClass}">${statusText}</div>
-                </div>
-                <div class="result-details">${details}</div>
-            `;
-            
-            // Add new result at the top
-            resultsContainer.prepend(resultItem);
-            
-            // Add to test results array
-            testResults.unshift({title, status, details, timestamp: new Date().toLocaleTimeString()});
-        }
-
-        // Simulate security testing
-        function simulateSecurityTest(targetUrl, testType, requestCount) {
-            // Simulate delay for testing
-            setTimeout(() => {
-                addTestResult('Koneksi ke Target', 'success', `Berhasil terhubung ke ${targetUrl}`);
-                
-                // Simulate different test types
-                if (testType === 'captcha') {
-                    simulateCaptchaTest(targetUrl);
-                } else if (testType === 'security-headers') {
-                    simulateSecurityHeadersTest(targetUrl);
-                } else if (testType === 'bot-detection') {
-                    simulateBotDetectionTest(targetUrl);
-                } else if (testType === 'cloudflare') {
-                    simulateCloudflareTest(targetUrl);
-                }
-                
-                // Simulate multiple requests
-                for (let i = 1; i <= requestCount; i++) {
-                    setTimeout(() => {
-                        const success = Math.random() > 0.3;
-                        addTestResult(
-                            `Request #${i}`,
-                            success ? 'success' : 'failed',
-                            success 
-                                ? `Request berhasil dengan status 200` 
-                                : `Request diblokir oleh sistem keamanan`
+                try {
+                    // Step 1: Initial request
+                    this.updateProgress(30, 'Performing initial request...');
+                    const initialResponse = await this.performRealRequest(targetUrl);
+                    
+                    if (!initialResponse.success) {
+                        this.addResult('Connection Failed', 'failed', 
+                            `Failed to connect: ${initialResponse.error}`, 
+                            initialResponse.isTimeout ? 'Timeout occurred' : 'Network error'
                         );
-                    }, i * 800);
-                }
-                
-                // Final result
-                setTimeout(() => {
-                    addTestResult(
-                        'Testing Selesai', 
-                        'success', 
-                        `Proses testing ${testType} selesai. ${requestCount} request dikirim ke ${targetUrl}`
-                    );
-                }, (parseInt(requestCount) + 2) * 800);
-            }, 1000);
-        }
-
-        // Simulate captcha test
-        function simulateCaptchaTest(targetUrl) {
-            setTimeout(() => {
-                const captchaDetected = Math.random() > 0.2;
-                
-                if (captchaDetected) {
-                    addTestResult('Deteksi Captcha', 'success', `Sistem mendeteksi captcha pada ${targetUrl}`);
-                    
-                    setTimeout(() => {
-                        const bypassSuccess = Math.random() > 0.4;
-                        addTestResult(
-                            'Bypass Captcha',
-                            bypassSuccess ? 'success' : 'failed',
-                            bypassSuccess 
-                                ? 'Berhasil melewati proteksi captcha' 
-                                : 'Gagal melewati proteksi captcha'
-                        );
-                    }, 1200);
-                } else {
-                    addTestResult('Deteksi Captcha', 'success', `Tidak ditemukan captcha pada ${targetUrl}`);
-                }
-            }, 1500);
-        }
-
-        // Simulate security headers test
-        function simulateSecurityHeadersTest(targetUrl) {
-            const headers = [
-                { name: 'X-Frame-Options', value: 'SAMEORIGIN', present: Math.random() > 0.3 },
-                { name: 'Content-Security-Policy', value: "default-src 'self'", present: Math.random() > 0.5 },
-                { name: 'X-Content-Type-Options', value: 'nosniff', present: Math.random() > 0.2 },
-                { name: 'Strict-Transport-Security', value: 'max-age=31536000', present: Math.random() > 0.6 },
-            ];
-            
-            headers.forEach((header, index) => {
-                setTimeout(() => {
-                    addTestResult(
-                        `Header: ${header.name}`,
-                        header.present ? 'success' : 'failed',
-                        header.present 
-                            ? `Ditemukan: ${header.value}` 
-                            : `Header ${header.name} tidak ditemukan - kerentanan keamanan`
-                    );
-                }, index * 800);
-            });
-        }
-
-        // Simulate bot detection test
-        function simulateBotDetectionTest(targetUrl) {
-            setTimeout(() => {
-                addTestResult('Deteksi Bot System', 'success', 'Menganalisis sistem deteksi bot...');
-                
-                setTimeout(() => {
-                    const tests = [
-                        { name: 'User-Agent Analysis', passed: Math.random() > 0.3 },
-                        { name: 'JavaScript Execution', passed: Math.random() > 0.2 },
-                        { name: 'Mouse Movement Detection', passed: Math.random() > 0.5 },
-                        { name: 'Canvas Fingerprinting', passed: Math.random() > 0.6 },
-                    ];
-                    
-                    tests.forEach((test, index) => {
-                        setTimeout(() => {
-                            addTestResult(
-                                `Bot Test: ${test.name}`,
-                                test.passed ? 'success' : 'failed',
-                                test.passed ? 'Tidak terdeteksi sebagai bot' : 'Terdeteksi sebagai bot'
-                            );
-                        }, index * 600);
-                    });
-                }, 1000);
-            }, 1500);
-        }
-
-        // Simulate Cloudflare test
-        function simulateCloudflareTest(targetUrl) {
-            setTimeout(() => {
-                addTestResult('Cloudflare Detection', 'success', 'Memeriksa proteksi Cloudflare...');
-                
-                setTimeout(() => {
-                    const hasCloudflare = Math.random() > 0.4;
-                    
-                    if (hasCloudflare) {
-                        addTestResult('Cloudflare Status', 'success', 'Website dilindungi Cloudflare');
-                        
-                        setTimeout(() => {
-                            const tests = [
-                                { name: 'Challenge Page', passed: Math.random() > 0.5 },
-                                { name: 'WAF Rules', passed: Math.random() > 0.6 },
-                                { name: 'Rate Limiting', passed: Math.random() > 0.4 },
-                                { name: 'JS Challenge', passed: Math.random() > 0.3 },
-                            ];
-                            
-                            tests.forEach((test, index) => {
-                                setTimeout(() => {
-                                    addTestResult(
-                                        `Cloudflare: ${test.name}`,
-                                        test.passed ? 'success' : 'failed',
-                                        test.passed ? 'Berhasil melewati' : 'Diblokir oleh sistem'
-                                    );
-                                }, index * 700);
-                            });
-                        }, 1000);
-                    } else {
-                        addTestResult('Cloudflare Status', 'success', 'Tidak menggunakan Cloudflare');
+                        this.updateProgress(100, 'Test completed with errors');
+                        this.isTesting = false;
+                        return;
                     }
-                }, 1200);
-            }, 1500);
+                    
+                    this.addResult('Initial Request', 'success', 
+                        `Status: ${initialResponse.status} | Size: ${initialResponse.size} bytes`, 
+                        `URL: ${targetUrl}`
+                    );
+                    
+                    // Step 2: Analyze response
+                    this.updateProgress(50, 'Analyzing security features...');
+                    const analysis = this.analyzeResponse(initialResponse);
+                    
+                    // Report analysis results
+                    let analysisDetails = `Status Code: ${initialResponse.status}\n`;
+                    analysisDetails += `Response Size: ${initialResponse.size} bytes\n`;
+                    analysisDetails += `Has Captcha: ${analysis.hasCaptcha ? 'Yes (' + analysis.captchaType + ')' : 'No'}\n`;
+                    analysisDetails += `Has Cloudflare: ${analysis.hasCloudflare ? 'Yes' : 'No'}\n`;
+                    analysisDetails += `Has WAF: ${analysis.hasWAF ? 'Yes' : 'No'}\n`;
+                    analysisDetails += `Security Headers: ${Object.keys(analysis.securityHeaders).length > 0 ? 'Present' : 'Missing'}`;
+                    
+                    this.addResult('Security Analysis', 
+                        analysis.hasCaptcha || analysis.hasCloudflare ? 'warning' : 'success', 
+                        analysisDetails,
+                        'Initial assessment'
+                    );
+                    
+                    // Step 3: Show headers if requested
+                    if (testType === 'header-test') {
+                        this.updateProgress(70, 'Extracting headers...');
+                        let headersDetails = '';
+                        Object.keys(initialResponse.headers).forEach(key => {
+                            headersDetails += `${key}: ${initialResponse.headers[key]}\n`;
+                        });
+                        
+                        this.addResult('Response Headers', 'info', headersDetails, 'Full header analysis');
+                    }
+                    
+                    // Step 4: Attempt bypass if captcha detected
+                    if (analysis.hasCaptcha && testType === 'bypass-attempt') {
+                        this.updateProgress(60, 'Attempting captcha bypass...');
+                        this.addResult('Bypass Attempt Started', 'info', 
+                            `Testing bypass techniques for ${analysis.captchaType}`, 
+                            'Multiple methods will be tested'
+                        );
+                        
+                        const bypassResults = await this.attemptBypass(targetUrl, analysis);
+                        
+                        bypassResults.forEach(result => {
+                            this.addResult(
+                                `Bypass: ${result.technique}`,
+                                result.success ? 'success' : 'failed',
+                                result.success 
+                                    ? `Success - Status: ${result.status}` 
+                                    : `Failed - ${result.error || 'Unknown error'}`
+                            );
+                        });
+                    }
+                    
+                    // Step 5: Additional requests for rate limiting test
+                    if (testType === 'full-analysis') {
+                        this.updateProgress(90, 'Testing rate limiting...');
+                        this.addResult('Rate Limit Test', 'info', 
+                            'Sending multiple requests to test rate limiting', 
+                            '3 consecutive requests'
+                        );
+                        
+                        for (let i = 1; i <= 3; i++) {
+                            await new Promise(resolve => setTimeout(resolve, 500));
+                            const repeatResponse = await this.performRealRequest(targetUrl);
+                            
+                            this.addResult(
+                                `Request #${i}`,
+                                repeatResponse.success ? 'success' : 'failed',
+                                repeatResponse.success 
+                                    ? `Status: ${repeatResponse.status} | Size: ${repeatResponse.size} bytes`
+                                    : `Failed: ${repeatResponse.error}`
+                            );
+                        }
+                    }
+                    
+                    this.updateProgress(100, 'Test completed successfully');
+                    this.addResult('Test Completed', 'success', 
+                        `All tests completed for ${targetUrl}`, 
+                        `Total requests: ${this.results.length}`
+                    );
+                    
+                } catch (error) {
+                    this.addResult('Test Error', 'failed', 
+                        `Unexpected error: ${error.message}`, 
+                        'Test terminated'
+                    );
+                    this.updateProgress(100, 'Test failed');
+                }
+                
+                this.isTesting = false;
+            }
         }
+
+        // Initialize tester
+        const tester = new RealSecurityTester();
+
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start real test
+            document.getElementById('start-real-test').addEventListener('click', function() {
+                const targetUrl = document.getElementById('target-url').value;
+                const testType = document.getElementById('test-type').value;
+                
+                if (!targetUrl) {
+                    alert('Please enter a target URL!');
+                    return;
+                }
+                
+                // Validate URL
+                try {
+                    new URL(targetUrl);
+                } catch {
+                    alert('Please enter a valid URL (including http:// or https://)');
+                    return;
+                }
+                
+                tester.runTest(targetUrl, testType);
+            });
+
+            // Load test sites
+            document.getElementById('load-test-sites').addEventListener('click', function() {
+                const sitesList = tester.testSites.map(site => 
+                    `${site.name}: ${site.url} - ${site.description}`
+                ).join('\n');
+                
+                alert('Available test sites:\n\n' + sitesList);
+            });
+
+            // Clear results
+            document.getElementById('clear-results').addEventListener('click', function() {
+                if (confirm('Clear all test results?')) {
+                    document.getElementById('resultsContainer').innerHTML = '';
+                    tester.results = [];
+                    
+                    const initialResult = document.createElement('div');
+                    initialResult.className = 'result-item';
+                    initialResult.innerHTML = `
+                        <div class="result-header">
+                            <div class="result-title">Results Cleared</div>
+                            <div class="result-status status-info">Ready</div>
+                        </div>
+                        <div class="result-details">All results have been cleared. Ready for new test.</div>
+                    `;
+                    
+                    document.getElementById('resultsContainer').appendChild(initialResult);
+                }
+            });
+
+            // Export results
+            document.getElementById('export-results').addEventListener('click', function() {
+                if (tester.results.length === 0) {
+                    alert('No results to export!');
+                    return;
+                }
+                
+                let exportText = 'Cyber Security Test Results\n';
+                exportText += 'Generated: ' + new Date().toLocaleString() + '\n';
+                exportText += '='.repeat(50) + '\n\n';
+                
+                tester.results.forEach(result => {
+                    exportText += `[${result.timestamp}] ${result.title}\n`;
+                    exportText += `Status: ${result.status.toUpperCase()}\n`;
+                    if (result.subtitle) exportText += `Subtitle: ${result.subtitle}\n`;
+                    exportText += `Details: ${result.details}\n`;
+                    exportText += '-'.repeat(40) + '\n';
+                });
+                
+                // Create download link
+                const blob = new Blob([exportText], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `security-test-${Date.now()}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // Quick test buttons
+            const quickTestContainer = document.createElement('div');
+            quickTestContainer.className = 'quick-tests';
+            quickTestContainer.style.marginTop = '20px';
+            quickTestContainer.style.display = 'flex';
+            quickTestContainer.style.gap = '10px';
+            quickTestContainer.style.flexWrap = 'wrap';
+            
+            tester.testSites.forEach(site => {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-secondary';
+                btn.style.width = 'auto';
+                btn.style.padding = '8px 16px';
+                btn.innerHTML = `<i class="fas fa-bolt"></i> ${site.name}`;
+                btn.onclick = () => {
+                    document.getElementById('target-url').value = site.url;
+                    document.getElementById('test-type').value = 'full-analysis';
+                    tester.runTest(site.url, 'full-analysis');
+                };
+                quickTestContainer.appendChild(btn);
+            });
+            
+            document.querySelector('.testing-section').appendChild(quickTestContainer);
+        });
     </script>
 </body>
 </html>
