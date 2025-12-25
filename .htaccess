@@ -1,0 +1,12 @@
+# .htaccess
+# Lindungi file database dari akses langsung
+<FilesMatch "\.(json)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Izinkan akses ke file PHP
+<Files "chat_handler.php">
+  Order Allow,Deny
+  Allow from all
+</Files>

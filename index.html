@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Global Anonim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: #6a11cb;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+        
+        .logo span {
+            color: #6a11cb;
+        }
+        
+        .user-info {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .username-display {
+            background: #f0f5ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .chat-container {
+            display: flex;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-height: 600px;
+        }
+        
+        .chat-sidebar {
+            width: 250px;
+            background: #f8faff;
+            border-right: 1px solid #eaeaea;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .online-count {
+            background: #4CAF50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .users-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .user-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+        
+        .user-item:hover {
+            background: #eef2ff;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .user-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+        
+        .online {
+            background: #4CAF50;
+        }
+        
+        .chat-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: #fcfcff;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.sent {
+            margin-left: auto;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .message-username {
+            font-weight: 600;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .message-time {
+            font-size: 12px;
+            color: #999;
+            margin-left: auto;
+        }
+        
+        .message-content {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            line-height: 1.5;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .message.sent .message-content {
+            background: #6a11cb;
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        
+        .message.received .message-content {
+            background: white;
+            color: #333;
+            border-radius: 18px 18px 18px 4px;
+        }
+        
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid #eaeaea;
+            background: white;
+        }
+        
+        .chat-form {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .message-input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: 2px solid #eaeaea;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s;
+        }
+        
+        .message-input:focus {
+            border-color: #6a11cb;
+        }
+        
+        .send-button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .send-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 50px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-input {
+            padding: 15px;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+        
+        .login-button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(106, 17, 203, 0.3);
+        }
+        
+        .instructions {
+            background: #f0f5ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .error-message {
+            background: #ffecec;
+            color: #d32f2f;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        .info-message {
+            background: #e8f4ff;
+            color: #1976d2;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .refresh-button {
+            background: #f0f5ff;
+            color: #6a11cb;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px auto;
+            transition: background 0.2s;
+        }
+        
+        .refresh-button:hover {
+            background: #e0eaff;
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                min-height: 500px;
+            }
+            
+            .chat-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #eaeaea;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginPage">
+        <div class="login-container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-comments"></i>
+                <h1>Chat<span>Global</span></h1>
+            </div>
+            
+            <h2 class="login-title">Masuk ke Chat Global</h2>
+            
+            <div class="error-message" id="loginError"></div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Masukkan username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+                </div>
+                
+                <button type="submit" class="login-button">
+                    <i class="fas fa-sign-in-alt"></i> Masuk ke Chat
+                </button>
+            </form>
+            
+            <div class="info-message">
+                <i class="fas fa-info-circle"></i> Tidak perlu email! Cukup buat username dan password untuk mulai chatting.
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-lightbulb"></i> Cara Kerja Chat Global:</h3>
+                <ul>
+                    <li>Masuk dengan username dan password (tanpa email)</li>
+                    <li>Kirim pesan ke semua pengguna online</li>
+                    <li>Semua pesan disimpan di database website</li>
+                    <li>Pesan akan tampil di semua perangkat yang membuka chat</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container" id="chatPage" style="display: none;">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+                <h1>Chat<span>Global</span></h1>
+            </div>
+            
+            <div class="user-info">
+                <div class="username-display" id="currentUsername">
+                    <i class="fas fa-user"></i> <span id="displayUsername">Guest</span>
+                </div>
+                <button class="refresh-button" id="refreshChat">
+                    <i class="fas fa-sync-alt"></i> Refresh Chat
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-users"></i> Pengguna Online
+                    <div class="online-count" id="onlineCount">0</div>
+                </div>
+                
+                <div class="users-list" id="usersList">
+                    <!-- Daftar pengguna akan diisi oleh JavaScript -->
+                </div>
+                
+                <div class="info-message" style="margin-top: auto; font-size: 12px;">
+                    <i class="fas fa-database"></i> Pesan disimpan di database-chat.json
+                </div>
+            </div>
+            
+            <div class="chat-main">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Pesan akan diisi oleh JavaScript -->
+                </div>
+                
+                <div class="chat-input-container">
+                    <form class="chat-form" id="messageForm">
+                        <input type="text" class="message-input" id="messageInput" placeholder="Ketik pesan Anda di sini..." autocomplete="off" required>
+                        <button type="submit" class="send-button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simpan informasi user yang login
+        let currentUser = null;
+        
+        // Format waktu
+        function formatTime(date) {
+            return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        // Ambil inisial dari username untuk avatar
+        function getInitials(username) {
+            return username.charAt(0).toUpperCase();
+        }
+        
+        // Tampilkan halaman chat setelah login
+        function showChatPage() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('chatPage').style.display = 'block';
+            document.getElementById('displayUsername').textContent = currentUser.username;
+            
+            // Muat pesan dan pengguna
+            loadMessages();
+            loadUsers();
+            
+            // Set interval untuk refresh otomatis setiap 5 detik
+            setInterval(loadMessages, 5000);
+            setInterval(loadUsers, 10000);
+        }
+        
+        // Kirim data ke PHP untuk diproses
+        async function sendToPHP(action, data = {}) {
+            try {
+                const formData = new FormData();
+                formData.append('action', action);
+                
+                // Tambahkan data ke formData
+                Object.keys(data).forEach(key => {
+                    formData.append(key, data[key]);
+                });
+                
+                const response = await fetch('chat_handler.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Error:', error);
+                return { success: false, error: 'Koneksi ke server gagal' };
+            }
+        }
+        
+        // Muat pesan dari database
+        async function loadMessages() {
+            try {
+                const response = await sendToPHP('get_messages');
+                
+                if (response.success) {
+                    displayMessages(response.messages || []);
+                }
+            } catch (error) {
+                console.error('Gagal memuat pesan:', error);
+            }
+        }
+        
+        // Tampilkan pesan di chat
+        function displayMessages(messages) {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = '';
+            
+            if (messages.length === 0) {
+                chatMessages.innerHTML = '<div class="info-message">Belum ada pesan. Jadilah yang pertama mengirim pesan!</div>';
+                return;
+            }
+            
+            messages.forEach(message => {
+                const isSentByCurrentUser = currentUser && message.username === currentUser.username;
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${isSentByCurrentUser ? 'sent' : 'received'}`;
+                
+                const time = new Date(message.timestamp);
+                
+                messageElement.innerHTML = `
+                    <div class="message-header">
+                        <div class="message-avatar">${getInitials(message.username)}</div>
+                        <div class="message-username">${message.username}</div>
+                        <div class="message-time">${formatTime(time)}</div>
+                    </div>
+                    <div class="message-content">${message.message}</div>
+                `;
+                
+                chatMessages.appendChild(messageElement);
+            });
+            
+            // Scroll ke bawah
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Muat daftar pengguna
+        async function loadUsers() {
+            try {
+                const response = await sendToPHP('get_users');
+                
+                if (response.success) {
+                    displayUsers(response.users || []);
+                    document.getElementById('onlineCount').textContent = response.users.length || 0;
+                }
+            } catch (error) {
+                console.error('Gagal memuat pengguna:', error);
+            }
+        }
+        
+        // Tampilkan daftar pengguna
+        function displayUsers(users) {
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = '';
+            
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.className = 'user-item';
+                
+                userElement.innerHTML = `
+                    <div class="user-avatar">${getInitials(user.username)}</div>
+                    <div class="user-name">${user.username}</div>
+                    <div class="user-status online"></div>
+                `;
+                
+                usersList.appendChild(userElement);
+            });
+        }
+        
+        // Kirim pesan baru
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+            
+            try {
+                const response = await sendToPHP('send_message', {
+                    username: currentUser.username,
+                    message: message
+                });
+                
+                if (response.success) {
+                    // Kosongkan input
+                    document.getElementById('messageInput').value = '';
+                    // Muat ulang pesan
+                    loadMessages();
+                } else {
+                    alert('Gagal mengirim pesan: ' + (response.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Gagal mengirim pesan:', error);
+                alert('Gagal mengirim pesan. Coba lagi nanti.');
+            }
+        }
+        
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginError = document.getElementById('loginError');
+            
+            // Validasi input
+            if (!username || !password) {
+                loginError.textContent = 'Username dan password harus diisi!';
+                loginError.style.display = 'block';
+                return;
+            }
+            
+            if (username.length < 3) {
+                loginError.textContent = 'Username minimal 3 karakter!';
+                loginError.style.display = 'block';
+                return;
+            }
+            
+            // Simpan user info
+            currentUser = {
+                username: username,
+                password: password // Catatan: Dalam implementasi nyata, password harus di-hash
+            };
+            
+            // Coba login/daftar
+            try {
+                const response = await sendToPHP('login', {
+                    username: username,
+                    password: password
+                });
+                
+                if (response.success) {
+                    // Login berhasil
+                    loginError.style.display = 'none';
+                    showChatPage();
+                    
+                    // Update status user online
+                    await sendToPHP('update_user_online', {
+                        username: username
+                    });
+                } else {
+                    loginError.textContent = response.error || 'Login gagal!';
+                    loginError.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'Terjadi kesalahan. Coba lagi nanti.';
+                loginError.style.display = 'block';
+            }
+        });
+        
+        // Message form handler
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messageInput = document.getElementById('messageInput');
+            sendMessage(messageInput.value);
+        });
+        
+        // Refresh chat button
+        document.getElementById('refreshChat').addEventListener('click', function() {
+            loadMessages();
+            loadUsers();
+        });
+        
+        // Logout saat halaman ditutup (opsional)
+        window.addEventListener('beforeunload', function() {
+            if (currentUser) {
+                // Dalam implementasi nyata, kirim request untuk update status offline
+                // Untuk demo, kita tidak implementasi
+            }
+        });
+    </script>
+</body>
+</html>
