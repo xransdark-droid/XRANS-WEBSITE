@@ -3,747 +3,783 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Global Anonim</title>
+    <title>Cyber Security - Xrans Exploit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
-        
+
+        :root {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #00ff9d;
+            --gray-light: #f5f5f5;
+            --gray-dark: #222222;
+            --radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background-color: var(--secondary);
+            color: var(--primary);
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .header {
-            background: white;
-            border-radius: 15px 15px 0 0;
-            padding: 25px 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .logo i {
-            font-size: 32px;
-            color: #6a11cb;
+            font-size: 2.5rem;
+            color: var(--accent);
         }
-        
-        .logo h1 {
-            font-size: 28px;
-            color: #2c3e50;
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
-        
-        .logo span {
-            color: #6a11cb;
+
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
-        
-        .user-info {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+
+        /* Main Content */
+        .hero {
+            padding: 5rem 0 3rem;
+            text-align: center;
         }
-        
-        .username-display {
-            background: #f0f5ff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            color: #2c3e50;
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        .chat-container {
-            display: flex;
-            background: white;
-            border-radius: 0 0 15px 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            min-height: 600px;
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.8);
         }
-        
-        .chat-sidebar {
-            width: 250px;
-            background: #f8faff;
-            border-right: 1px solid #eaeaea;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
+
+        /* About Section */
+        .about {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
-        .sidebar-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #2c3e50;
+
+        .about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
-        .online-count {
-            background: #4CAF50;
+
+        .about p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Testing Section */
+        .testing-section {
+            margin-bottom: 4rem;
+        }
+
+        .testing-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .test-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .control-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .control-card:hover {
+            border-color: rgba(0, 255, 157, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .control-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             color: white;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 14px;
+            font-size: 1rem;
+            transition: var(--transition);
         }
-        
-        .users-list {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.1);
         }
-        
-        .user-item {
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #00e087;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 157, 0.1);
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-bottom: 4rem;
+        }
+
+        .results-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .results-container {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 300px;
+        }
+
+        .result-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-title {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .result-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background-color: rgba(0, 255, 157, 0.2);
+            color: var(--accent);
+        }
+
+        .status-failed {
+            background-color: rgba(255, 50, 50, 0.2);
+            color: #ff3232;
+        }
+
+        .result-details {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Captcha Demo */
+        .captcha-demo {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .captcha-demo h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .captcha-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .captcha-text {
+            font-size: 2rem;
+            letter-spacing: 10px;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 10px;
             border-radius: 8px;
-            margin-bottom: 8px;
-            transition: background 0.2s;
         }
-        
-        .user-item:hover {
-            background: #eef2ff;
-        }
-        
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .captcha-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: 5px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .developer {
+            color: var(--accent);
             font-weight: 600;
         }
-        
-        .user-name {
-            font-weight: 500;
-            color: #444;
-        }
-        
-        .user-status {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-left: auto;
-        }
-        
-        .online {
-            background: #4CAF50;
-        }
-        
-        .chat-main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-messages {
-            flex-grow: 1;
-            padding: 25px;
-            overflow-y: auto;
-            background: #fcfcff;
-        }
-        
-        .message {
-            margin-bottom: 20px;
-            max-width: 80%;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .message.sent {
-            margin-left: auto;
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
         }
-        
-        .message-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        
-        .message-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            margin-right: 10px;
-            font-size: 14px;
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
         }
-        
-        .message-username {
-            font-weight: 600;
-            font-size: 14px;
-            color: #555;
-        }
-        
-        .message-time {
-            font-size: 12px;
-            color: #999;
-            margin-left: auto;
-        }
-        
-        .message-content {
-            background: white;
-            padding: 12px 16px;
-            border-radius: 18px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            line-height: 1.5;
-            border: 1px solid #f0f0f0;
-        }
-        
-        .message.sent .message-content {
-            background: #6a11cb;
-            color: white;
-            border-radius: 18px 18px 4px 18px;
-        }
-        
-        .message.received .message-content {
-            background: white;
-            color: #333;
-            border-radius: 18px 18px 18px 4px;
-        }
-        
-        .chat-input-container {
-            padding: 20px;
-            border-top: 1px solid #eaeaea;
-            background: white;
-        }
-        
-        .chat-form {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .message-input {
-            flex-grow: 1;
-            padding: 15px 20px;
-            border: 2px solid #eaeaea;
-            border-radius: 30px;
-            font-size: 16px;
-            outline: none;
-            transition: border 0.3s;
-        }
-        
-        .message-input:focus {
-            border-color: #6a11cb;
-        }
-        
-        .send-button {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .send-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
-        }
-        
-        .login-container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 500px;
-            margin: 50px auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-        
-        .login-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .form-group label {
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .form-input {
-            padding: 15px;
-            border: 2px solid #eaeaea;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border 0.3s;
-        }
-        
-        .form-input:focus {
-            border-color: #6a11cb;
-            outline: none;
-        }
-        
-        .login-button {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
-        }
-        
-        .login-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(106, 17, 203, 0.3);
-        }
-        
-        .instructions {
-            background: #f0f5ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #555;
-        }
-        
-        .instructions h3 {
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .instructions ul {
-            padding-left: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 8px;
-        }
-        
-        .error-message {
-            background: #ffecec;
-            color: #d32f2f;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-            text-align: center;
-        }
-        
-        .info-message {
-            background: #e8f4ff;
-            color: #1976d2;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-        
-        .refresh-button {
-            background: #f0f5ff;
-            color: #6a11cb;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 15px auto;
-            transition: background 0.2s;
-        }
-        
-        .refresh-button:hover {
-            background: #e0eaff;
-        }
-        
-        @media (max-width: 768px) {
-            .chat-container {
-                flex-direction: column;
-                min-height: 500px;
-            }
-            
-            .chat-sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #eaeaea;
-            }
-            
-            .message {
-                max-width: 90%;
-            }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="loginPage">
-        <div class="login-container">
-            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
-                <i class="fas fa-comments"></i>
-                <h1>Chat<span>Global</span></h1>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="logo-text">
+                        <h1>Cyber Security</h1>
+                        <p>Testing & Research Platform</p>
+                    </div>
+                </div>
+                <div class="developer-tag">
+                    <span class="developer">Xrans Exploit</span> Developer
+                </div>
             </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero fade-in">
+            <h2>Testing Keamanan Website</h2>
+            <p>Platform untuk menguji kerentanan sistem keamanan website, terutama dalam mendeteksi dan melewati proteksi Captcha dan sistem keamanan lainnya.</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="about fade-in">
+            <h3><i class="fas fa-info-circle"></i> Tentang Website Ini</h3>
+            <p>Website "Cyber Security" dikembangkan oleh <span class="developer">Xrans Exploit</span> sebagai platform testing dan penelitian keamanan siber. Tujuan utama platform ini adalah untuk membantu developer dan security researcher dalam menguji ketahanan website terhadap berbagai metode serangan dan bypass keamanan.</p>
             
-            <h2 class="login-title">Masuk ke Chat Global</h2>
+            <p><strong>Tujuan khusus website ini:</strong></p>
+            <ul>
+                <li>Menguji kemampuan sistem dalam mendeteksi dan melewati proteksi Captcha</li>
+                <li>Menganalisis respons website terhadap request yang mencurigakan</li>
+                <li>Melakukan simulasi serangan bot untuk menguji ketahanan sistem</li>
+                <li>Memberikan laporan detail tentang kerentanan yang ditemukan</li>
+                <li>Membantu developer meningkatkan keamanan website mereka</li>
+            </ul>
             
-            <div class="error-message" id="loginError"></div>
-            
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" class="form-input" placeholder="Masukkan username" required>
+            <p><strong>Disclaimer:</strong> Website ini hanya untuk tujuan edukasi dan testing yang legal. Selalu dapatkan izin sebelum menguji website yang bukan milik Anda.</p>
+        </section>
+
+        <!-- Testing Section -->
+        <section class="testing-section fade-in">
+            <h3><i class="fas fa-flask"></i> Testing Keamanan</h3>
+            <div class="test-controls">
+                <div class="control-card">
+                    <h4><i class="fas fa-globe"></i> Target Website</h4>
+                    <div class="input-group">
+                        <label for="target-url">URL Target</label>
+                        <input type="text" id="target-url" placeholder="https://example.com" value="https://nowsecure.nl">
+                    </div>
+                    <div class="input-group">
+                        <label for="test-type">Jenis Testing</label>
+                        <select id="test-type" class="input-group input">
+                            <option value="captcha">Bypass Captcha</option>
+                            <option value="security-headers">Security Headers</option>
+                            <option value="bot-detection">Bot Detection</option>
+                            <option value="cloudflare">Cloudflare Protection</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="start-test">
+                        <i class="fas fa-play"></i> Mulai Testing
+                    </button>
                 </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+
+                <div class="control-card">
+                    <h4><i class="fas fa-sliders-h"></i> Konfigurasi</h4>
+                    <div class="input-group">
+                        <label for="request-delay">Delay Request (ms)</label>
+                        <input type="number" id="request-delay" value="1000" min="100" max="10000">
+                    </div>
+                    <div class="input-group">
+                        <label for="request-count">Jumlah Request</label>
+                        <input type="number" id="request-count" value="3" min="1" max="10">
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="use-proxy" checked> Gunakan Proxy Rotasi
+                        </label>
+                    </div>
+                    <button class="btn btn-secondary" id="advanced-settings">
+                        <i class="fas fa-cog"></i> Pengaturan Lanjutan
+                    </button>
                 </div>
-                
-                <button type="submit" class="login-button">
-                    <i class="fas fa-sign-in-alt"></i> Masuk ke Chat
+            </div>
+        </section>
+
+        <!-- Captcha Demo Section -->
+        <section class="captcha-demo fade-in">
+            <h4><i class="fas fa-robot"></i> Simulasi Bypass Captcha</h4>
+            <p>Simulasi proses bypass captcha seperti pada nowsecure.nl</p>
+            <div class="captcha-box">
+                <div class="captcha-text" id="captchaDisplay">A3B8C</div>
+                <input type="text" class="captcha-input" id="captchaInput" placeholder="Masukkan kode di atas" maxlength="5">
+                <button class="btn" id="verifyCaptcha">
+                    <i class="fas fa-check"></i> Verifikasi Captcha
                 </button>
-            </form>
-            
-            <div class="info-message">
-                <i class="fas fa-info-circle"></i> Tidak perlu email! Cukup buat username dan password untuk mulai chatting.
-            </div>
-            
-            <div class="instructions">
-                <h3><i class="fas fa-lightbulb"></i> Cara Kerja Chat Global:</h3>
-                <ul>
-                    <li>Masuk dengan username dan password (tanpa email)</li>
-                    <li>Kirim pesan ke semua pengguna online</li>
-                    <li>Semua pesan disimpan di database website</li>
-                    <li>Pesan akan tampil di semua perangkat yang membuka chat</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container" id="chatPage" style="display: none;">
-        <div class="header">
-            <div class="logo">
-                <i class="fas fa-comments"></i>
-                <h1>Chat<span>Global</span></h1>
-            </div>
-            
-            <div class="user-info">
-                <div class="username-display" id="currentUsername">
-                    <i class="fas fa-user"></i> <span id="displayUsername">Guest</span>
-                </div>
-                <button class="refresh-button" id="refreshChat">
-                    <i class="fas fa-sync-alt"></i> Refresh Chat
+                <button class="btn btn-secondary" id="autoSolve" style="margin-top: 10px;">
+                    <i class="fas fa-magic"></i> Auto Solve
                 </button>
             </div>
-        </div>
-        
-        <div class="chat-container">
-            <div class="chat-sidebar">
-                <div class="sidebar-title">
-                    <i class="fas fa-users"></i> Pengguna Online
-                    <div class="online-count" id="onlineCount">0</div>
+            <p id="captchaResult" style="margin-top: 1rem;"></p>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section fade-in">
+            <h3><i class="fas fa-chart-bar"></i> Hasil Testing</h3>
+            <div class="results-container" id="resultsContainer">
+                <div class="result-item">
+                    <div class="result-header">
+                        <div class="result-title">Status Sistem</div>
+                        <div class="result-status status-success">Siap</div>
+                    </div>
+                    <div class="result-details">Sistem siap melakukan testing keamanan. Masukkan URL target dan klik "Mulai Testing".</div>
                 </div>
                 
-                <div class="users-list" id="usersList">
-                    <!-- Daftar pengguna akan diisi oleh JavaScript -->
-                </div>
-                
-                <div class="info-message" style="margin-top: auto; font-size: 12px;">
-                    <i class="fas fa-database"></i> Pesan disimpan di database-chat.json
+                <div class="result-item">
+                    <div class="result-header">
+                        <div class="result-title">Info Testing</div>
+                        <div class="result-status status-success">Menunggu</div>
+                    </div>
+                    <div class="result-details">Hasil testing akan ditampilkan di sini setelah proses selesai.</div>
                 </div>
             </div>
-            
-            <div class="chat-main">
-                <div class="chat-messages" id="chatMessages">
-                    <!-- Pesan akan diisi oleh JavaScript -->
-                </div>
-                
-                <div class="chat-input-container">
-                    <form class="chat-form" id="messageForm">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Ketik pesan Anda di sini..." autocomplete="off" required>
-                        <button type="submit" class="send-button">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Cyber Security Testing Platform. Dikembangkan oleh <span class="developer">Xrans Exploit</span>.</p>
+            <p>Hanya untuk tujuan edukasi dan testing yang legal.</p>
+            <p><i class="fas fa-exclamation-triangle"></i> Selalu dapatkan izin sebelum menguji website pihak lain.</p>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // Simpan informasi user yang login
-        let currentUser = null;
-        
-        // Format waktu
-        function formatTime(date) {
-            return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-        }
-        
-        // Ambil inisial dari username untuk avatar
-        function getInitials(username) {
-            return username.charAt(0).toUpperCase();
-        }
-        
-        // Tampilkan halaman chat setelah login
-        function showChatPage() {
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('chatPage').style.display = 'block';
-            document.getElementById('displayUsername').textContent = currentUser.username;
-            
-            // Muat pesan dan pengguna
-            loadMessages();
-            loadUsers();
-            
-            // Set interval untuk refresh otomatis setiap 5 detik
-            setInterval(loadMessages, 5000);
-            setInterval(loadUsers, 10000);
-        }
-        
-        // Kirim data ke PHP untuk diproses
-        async function sendToPHP(action, data = {}) {
-            try {
-                const formData = new FormData();
-                formData.append('action', action);
-                
-                // Tambahkan data ke formData
-                Object.keys(data).forEach(key => {
-                    formData.append(key, data[key]);
-                });
-                
-                const response = await fetch('chat_handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                return await response.json();
-            } catch (error) {
-                console.error('Error:', error);
-                return { success: false, error: 'Koneksi ke server gagal' };
+        // Generate random captcha
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+            let captcha = '';
+            for (let i = 0; i < 5; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
             }
+            document.getElementById('captchaDisplay').textContent = captcha;
+            return captcha;
         }
-        
-        // Muat pesan dari database
-        async function loadMessages() {
-            try {
-                const response = await sendToPHP('get_messages');
+
+        // Current captcha
+        let currentCaptcha = generateCaptcha();
+        let testResults = [];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Captcha verification
+            document.getElementById('verifyCaptcha').addEventListener('click', function() {
+                const userInput = document.getElementById('captchaInput').value.toUpperCase();
+                const resultElement = document.getElementById('captchaResult');
                 
-                if (response.success) {
-                    displayMessages(response.messages || []);
-                }
-            } catch (error) {
-                console.error('Gagal memuat pesan:', error);
-            }
-        }
-        
-        // Tampilkan pesan di chat
-        function displayMessages(messages) {
-            const chatMessages = document.getElementById('chatMessages');
-            chatMessages.innerHTML = '';
-            
-            if (messages.length === 0) {
-                chatMessages.innerHTML = '<div class="info-message">Belum ada pesan. Jadilah yang pertama mengirim pesan!</div>';
-                return;
-            }
-            
-            messages.forEach(message => {
-                const isSentByCurrentUser = currentUser && message.username === currentUser.username;
-                const messageElement = document.createElement('div');
-                messageElement.className = `message ${isSentByCurrentUser ? 'sent' : 'received'}`;
-                
-                const time = new Date(message.timestamp);
-                
-                messageElement.innerHTML = `
-                    <div class="message-header">
-                        <div class="message-avatar">${getInitials(message.username)}</div>
-                        <div class="message-username">${message.username}</div>
-                        <div class="message-time">${formatTime(time)}</div>
-                    </div>
-                    <div class="message-content">${message.message}</div>
-                `;
-                
-                chatMessages.appendChild(messageElement);
-            });
-            
-            // Scroll ke bawah
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        
-        // Muat daftar pengguna
-        async function loadUsers() {
-            try {
-                const response = await sendToPHP('get_users');
-                
-                if (response.success) {
-                    displayUsers(response.users || []);
-                    document.getElementById('onlineCount').textContent = response.users.length || 0;
-                }
-            } catch (error) {
-                console.error('Gagal memuat pengguna:', error);
-            }
-        }
-        
-        // Tampilkan daftar pengguna
-        function displayUsers(users) {
-            const usersList = document.getElementById('usersList');
-            usersList.innerHTML = '';
-            
-            users.forEach(user => {
-                const userElement = document.createElement('div');
-                userElement.className = 'user-item';
-                
-                userElement.innerHTML = `
-                    <div class="user-avatar">${getInitials(user.username)}</div>
-                    <div class="user-name">${user.username}</div>
-                    <div class="user-status online"></div>
-                `;
-                
-                usersList.appendChild(userElement);
-            });
-        }
-        
-        // Kirim pesan baru
-        async function sendMessage(message) {
-            if (!message.trim()) return;
-            
-            try {
-                const response = await sendToPHP('send_message', {
-                    username: currentUser.username,
-                    message: message
-                });
-                
-                if (response.success) {
-                    // Kosongkan input
-                    document.getElementById('messageInput').value = '';
-                    // Muat ulang pesan
-                    loadMessages();
+                if (userInput === currentCaptcha) {
+                    resultElement.innerHTML = '<span style="color:#00ff9d"><i class="fas fa-check-circle"></i> Captcha berhasil diverifikasi!</span>';
+                    addTestResult('Captcha Manual', 'success', 'Berhasil melewati captcha manual');
                 } else {
-                    alert('Gagal mengirim pesan: ' + (response.error || 'Unknown error'));
+                    resultElement.innerHTML = '<span style="color:#ff3232"><i class="fas fa-times-circle"></i> Captcha salah! Coba lagi.</span>';
+                    addTestResult('Captcha Manual', 'failed', `Gagal: Input "${userInput}" tidak sesuai dengan "${currentCaptcha}"`);
                 }
-            } catch (error) {
-                console.error('Gagal mengirim pesan:', error);
-                alert('Gagal mengirim pesan. Coba lagi nanti.');
-            }
-        }
-        
-        // Login handler
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const loginError = document.getElementById('loginError');
-            
-            // Validasi input
-            if (!username || !password) {
-                loginError.textContent = 'Username dan password harus diisi!';
-                loginError.style.display = 'block';
-                return;
-            }
-            
-            if (username.length < 3) {
-                loginError.textContent = 'Username minimal 3 karakter!';
-                loginError.style.display = 'block';
-                return;
-            }
-            
-            // Simpan user info
-            currentUser = {
-                username: username,
-                password: password // Catatan: Dalam implementasi nyata, password harus di-hash
-            };
-            
-            // Coba login/daftar
-            try {
-                const response = await sendToPHP('login', {
-                    username: username,
-                    password: password
-                });
+            });
+
+            // Auto solve captcha
+            document.getElementById('autoSolve').addEventListener('click', function() {
+                document.getElementById('captchaInput').value = currentCaptcha;
+                document.getElementById('captchaResult').innerHTML = '<span style="color:#00ff9d"><i class="fas fa-robot"></i> Captcha berhasil di-solve secara otomatis!</span>';
+                addTestResult('Auto Solve Captcha', 'success', 'Berhasil melewati captcha dengan auto-solving');
+            });
+
+            // Start security test
+            document.getElementById('start-test').addEventListener('click', function() {
+                const targetUrl = document.getElementById('target-url').value;
+                const testType = document.getElementById('test-type').value;
+                const requestDelay = document.getElementById('request-delay').value;
+                const requestCount = document.getElementById('request-count').value;
                 
-                if (response.success) {
-                    // Login berhasil
-                    loginError.style.display = 'none';
-                    showChatPage();
+                if (!targetUrl) {
+                    alert('Masukkan URL target terlebih dahulu!');
+                    return;
+                }
+
+                // Clear previous results
+                document.getElementById('resultsContainer').innerHTML = '';
+                
+                // Add initial status
+                addTestResult('Inisialisasi Testing', 'success', `Memulai testing ${testType} pada ${targetUrl}`);
+                
+                // Simulate testing process
+                simulateSecurityTest(targetUrl, testType, requestCount);
+            });
+
+            // Advanced settings button
+            document.getElementById('advanced-settings').addEventListener('click', function() {
+                alert('Fitur pengaturan lanjutan dalam pengembangan. Akan tersedia di versi berikutnya.');
+            });
+
+            // Generate new captcha every 30 seconds
+            setInterval(() => {
+                currentCaptcha = generateCaptcha();
+                document.getElementById('captchaInput').value = '';
+                document.getElementById('captchaResult').innerHTML = '<span style="color:#ffaa00"><i class="fas fa-sync-alt"></i> Captcha telah diperbarui</span>';
+            }, 30000);
+        });
+
+        // Add test result to display
+        function addTestResult(title, status, details) {
+            const resultsContainer = document.getElementById('resultsContainer');
+            const statusClass = status === 'success' ? 'status-success' : 'status-failed';
+            const statusText = status === 'success' ? 'Berhasil' : 'Gagal';
+            
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.innerHTML = `
+                <div class="result-header">
+                    <div class="result-title">${title}</div>
+                    <div class="result-status ${statusClass}">${statusText}</div>
+                </div>
+                <div class="result-details">${details}</div>
+            `;
+            
+            // Add new result at the top
+            resultsContainer.prepend(resultItem);
+            
+            // Add to test results array
+            testResults.unshift({title, status, details, timestamp: new Date().toLocaleTimeString()});
+        }
+
+        // Simulate security testing
+        function simulateSecurityTest(targetUrl, testType, requestCount) {
+            // Simulate delay for testing
+            setTimeout(() => {
+                addTestResult('Koneksi ke Target', 'success', `Berhasil terhubung ke ${targetUrl}`);
+                
+                // Simulate different test types
+                if (testType === 'captcha') {
+                    simulateCaptchaTest(targetUrl);
+                } else if (testType === 'security-headers') {
+                    simulateSecurityHeadersTest(targetUrl);
+                } else if (testType === 'bot-detection') {
+                    simulateBotDetectionTest(targetUrl);
+                } else if (testType === 'cloudflare') {
+                    simulateCloudflareTest(targetUrl);
+                }
+                
+                // Simulate multiple requests
+                for (let i = 1; i <= requestCount; i++) {
+                    setTimeout(() => {
+                        const success = Math.random() > 0.3;
+                        addTestResult(
+                            `Request #${i}`,
+                            success ? 'success' : 'failed',
+                            success 
+                                ? `Request berhasil dengan status 200` 
+                                : `Request diblokir oleh sistem keamanan`
+                        );
+                    }, i * 800);
+                }
+                
+                // Final result
+                setTimeout(() => {
+                    addTestResult(
+                        'Testing Selesai', 
+                        'success', 
+                        `Proses testing ${testType} selesai. ${requestCount} request dikirim ke ${targetUrl}`
+                    );
+                }, (parseInt(requestCount) + 2) * 800);
+            }, 1000);
+        }
+
+        // Simulate captcha test
+        function simulateCaptchaTest(targetUrl) {
+            setTimeout(() => {
+                const captchaDetected = Math.random() > 0.2;
+                
+                if (captchaDetected) {
+                    addTestResult('Deteksi Captcha', 'success', `Sistem mendeteksi captcha pada ${targetUrl}`);
                     
-                    // Update status user online
-                    await sendToPHP('update_user_online', {
-                        username: username
-                    });
+                    setTimeout(() => {
+                        const bypassSuccess = Math.random() > 0.4;
+                        addTestResult(
+                            'Bypass Captcha',
+                            bypassSuccess ? 'success' : 'failed',
+                            bypassSuccess 
+                                ? 'Berhasil melewati proteksi captcha' 
+                                : 'Gagal melewati proteksi captcha'
+                        );
+                    }, 1200);
                 } else {
-                    loginError.textContent = response.error || 'Login gagal!';
-                    loginError.style.display = 'block';
+                    addTestResult('Deteksi Captcha', 'success', `Tidak ditemukan captcha pada ${targetUrl}`);
                 }
-            } catch (error) {
-                console.error('Login error:', error);
-                loginError.textContent = 'Terjadi kesalahan. Coba lagi nanti.';
-                loginError.style.display = 'block';
-            }
-        });
-        
-        // Message form handler
-        document.getElementById('messageForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const messageInput = document.getElementById('messageInput');
-            sendMessage(messageInput.value);
-        });
-        
-        // Refresh chat button
-        document.getElementById('refreshChat').addEventListener('click', function() {
-            loadMessages();
-            loadUsers();
-        });
-        
-        // Logout saat halaman ditutup (opsional)
-        window.addEventListener('beforeunload', function() {
-            if (currentUser) {
-                // Dalam implementasi nyata, kirim request untuk update status offline
-                // Untuk demo, kita tidak implementasi
-            }
-        });
+            }, 1500);
+        }
+
+        // Simulate security headers test
+        function simulateSecurityHeadersTest(targetUrl) {
+            const headers = [
+                { name: 'X-Frame-Options', value: 'SAMEORIGIN', present: Math.random() > 0.3 },
+                { name: 'Content-Security-Policy', value: "default-src 'self'", present: Math.random() > 0.5 },
+                { name: 'X-Content-Type-Options', value: 'nosniff', present: Math.random() > 0.2 },
+                { name: 'Strict-Transport-Security', value: 'max-age=31536000', present: Math.random() > 0.6 },
+            ];
+            
+            headers.forEach((header, index) => {
+                setTimeout(() => {
+                    addTestResult(
+                        `Header: ${header.name}`,
+                        header.present ? 'success' : 'failed',
+                        header.present 
+                            ? `Ditemukan: ${header.value}` 
+                            : `Header ${header.name} tidak ditemukan - kerentanan keamanan`
+                    );
+                }, index * 800);
+            });
+        }
+
+        // Simulate bot detection test
+        function simulateBotDetectionTest(targetUrl) {
+            setTimeout(() => {
+                addTestResult('Deteksi Bot System', 'success', 'Menganalisis sistem deteksi bot...');
+                
+                setTimeout(() => {
+                    const tests = [
+                        { name: 'User-Agent Analysis', passed: Math.random() > 0.3 },
+                        { name: 'JavaScript Execution', passed: Math.random() > 0.2 },
+                        { name: 'Mouse Movement Detection', passed: Math.random() > 0.5 },
+                        { name: 'Canvas Fingerprinting', passed: Math.random() > 0.6 },
+                    ];
+                    
+                    tests.forEach((test, index) => {
+                        setTimeout(() => {
+                            addTestResult(
+                                `Bot Test: ${test.name}`,
+                                test.passed ? 'success' : 'failed',
+                                test.passed ? 'Tidak terdeteksi sebagai bot' : 'Terdeteksi sebagai bot'
+                            );
+                        }, index * 600);
+                    });
+                }, 1000);
+            }, 1500);
+        }
+
+        // Simulate Cloudflare test
+        function simulateCloudflareTest(targetUrl) {
+            setTimeout(() => {
+                addTestResult('Cloudflare Detection', 'success', 'Memeriksa proteksi Cloudflare...');
+                
+                setTimeout(() => {
+                    const hasCloudflare = Math.random() > 0.4;
+                    
+                    if (hasCloudflare) {
+                        addTestResult('Cloudflare Status', 'success', 'Website dilindungi Cloudflare');
+                        
+                        setTimeout(() => {
+                            const tests = [
+                                { name: 'Challenge Page', passed: Math.random() > 0.5 },
+                                { name: 'WAF Rules', passed: Math.random() > 0.6 },
+                                { name: 'Rate Limiting', passed: Math.random() > 0.4 },
+                                { name: 'JS Challenge', passed: Math.random() > 0.3 },
+                            ];
+                            
+                            tests.forEach((test, index) => {
+                                setTimeout(() => {
+                                    addTestResult(
+                                        `Cloudflare: ${test.name}`,
+                                        test.passed ? 'success' : 'failed',
+                                        test.passed ? 'Berhasil melewati' : 'Diblokir oleh sistem'
+                                    );
+                                }, index * 700);
+                            });
+                        }, 1000);
+                    } else {
+                        addTestResult('Cloudflare Status', 'success', 'Tidak menggunakan Cloudflare');
+                    }
+                }, 1200);
+            }, 1500);
+        }
     </script>
 </body>
 </html>
